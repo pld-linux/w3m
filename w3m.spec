@@ -4,7 +4,7 @@ Summary(fr):	Navigateur en mode texte pour le world wide web
 Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	991028
+Version:	991203
 Release:	1
 Copyright:	GPL
 Group:		Applications/Networking
@@ -13,7 +13,7 @@ Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-config.patch
 URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.4-2
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -40,12 +40,28 @@ tablolar için desteði vardýr.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p1
+%patch0 -p1 -b .wiget
 
 %build
+./configure <<EOF;
+%{_bindir}
+%{_datadir}/w3m
+2
+y
+5
+/bin/vi
+/bin/mail
+/usr/bin/netscape
+gcc
+$RPM_OPT_FLAGS
+-lncurses
+-lnsl -lssl -lcrypto
+
+EOF
+
 LDFLAGS="-s"; export LDFLAGS
 
-make CC="gcc $RPM_OPT_FLAGS"
+make 
 
 %install
 rm -rf $RPM_BUILD_ROOT
