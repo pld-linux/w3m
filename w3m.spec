@@ -6,7 +6,7 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.3.2.2
+Version:	0.4.1
 Release:	1
 Epoch:		1
 License:	MIT-like
@@ -63,12 +63,12 @@ Group:		Applications/Networking
 Requires:	%{name} = %{version}
 
 %description imgdisplay
-Install this package if you want to display images in xterm(!!!) w3m
-session.
+Install this package if you want to display images in w3m run on xterm
+or Linux framebuffer.
 
 %description imgdisplay -l pl
 Zainstaluj ten pakiet je¶li chcesz aby w3m wy¶wietla³ obrazki w
-xtermie(!!!).
+xtermie lub na linuksowym framebufferze.
 
 %prep
 %setup -q
@@ -81,6 +81,7 @@ use_ipv6=y; export use_ipv6
 ./configure <<EOF
 %{_bindir}
 %{_libdir}/w3m
+%{_libdir}/w3m/cgi-bin
 %{_datadir}/w3m
 %{_mandir}
 %{_sysconfdir}/w3m
@@ -92,6 +93,7 @@ y
 y
 y
 y
+n
 y
 n
 y
@@ -102,7 +104,7 @@ y
 y
 y
 /bin/vi
-/usr/X11R6/bin/netscape
+/usr/bin/mozilla
 %{__cc}
 %{rpmcflags}
 -lncurses
@@ -128,11 +130,12 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.html doc/{README,keymap,menu}.* NEWS
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/w3m
-%attr(755,root,root) %{_libdir}/w3m/*.cgi
 %attr(755,root,root) %{_libdir}/w3m/inflate
-%attr(755,root,root) %{_libdir}/w3m/w3mbookmark
-%attr(755,root,root) %{_libdir}/w3m/w3mhelperpanel
 %attr(755,root,root) %{_libdir}/w3m/xface2xpm
+%dir %{_libdir}/w3m/cgi-bin
+%attr(755,root,root) %{_libdir}/w3m/cgi-bin/*.cgi
+%attr(755,root,root) %{_libdir}/w3m/cgi-bin/w3mbookmark
+%attr(755,root,root) %{_libdir}/w3m/cgi-bin/w3mhelperpanel
 %dir %{_datadir}/w3m
 %{_datadir}/w3m/w3mhelp.html
 %{_datadir}/w3m/w3mhelp*en.*
