@@ -4,18 +4,19 @@ Summary(fr):	Navigateur en mode texte pour le world wide web
 Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.2.1
-Release:	2
+Version:	0.2.3.2
+Release:	1
 Epoch:		1
-License:	GPL
+License:	MIT-like
 Group:		Applications/Networking
 Group(de):	Applikationen/Netzwerkwesen
 Group(pl):	Aplikacje/Sieciowe
-Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-dontresetiso2.patch
 Patch2:		%{name}-ssl-segv.patch
-URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
+Patch3:		%{name}-ipv6.patch
+URL:		http://w3m.sourceforge.net/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	gpm-devel
@@ -50,29 +51,30 @@ formlar ve tablolar için desteði vardýr.
 %patch0 -p1 
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
-find -name CVS -type d |xargs rm -rf 
-./configure <<EOF;
+./configure <<EOF
 %{_bindir}
 %{_libdir}/w3m
 %{_datadir}/w3m
+%{_sysconfdir}/w3m
 2
-y
-y
-y
-n
 y
 5
 y
+y
+y
+y
+y
+y
 /bin/vi
 /bin/mail
-%/usr/X11R6/bin/netscape
+/usr/X11R6/bin/netscape
 %{__cc}
 %{rpmcflags}
 -lncurses
--lnsl -lssl -lcrypto
-
+%{rpmldflags}
 EOF
 
 %{__make} 
@@ -81,24 +83,25 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install-helpfile DESTDIR=$RPM_BUILD_ROOT
 
 mv -f doc/w3m.1 $RPM_BUILD_ROOT%{_mandir}/man1/w3m.1
 # symlink instead of duplicated file
 ln -sf w3mhelp-lynx_en.html $RPM_BUILD_ROOT%{_datadir}/w3m/w3mhelp.html
 
-gzip -9nf doc/*
+gzip -9nf doc/* NEWS
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/*.gz
+%doc doc/*.gz *.gz
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/w3m
 %dir %{_datadir}/w3m
 %{_datadir}/w3m/w3mhelp.html
-%{_datadir}/w3m/w3mhelp*_en.html
-%lang(ja) %{_datadir}/w3m/w3mhelp*_ja.html
+%{_datadir}/w3m/w3mhelp*en.*
+%lang(ja) %{_datadir}/w3m/w3mhelp*ja.*
+%{_datadir}/w3m/w3mhelp-funcname.pl
 %{_mandir}/man1/*

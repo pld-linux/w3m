@@ -1,30 +1,37 @@
---- w3m-0.2.1/url.c.orig	Fri Mar 23 02:51:04 2001
-+++ w3m-0.2.1/url.c	Thu Jul 19 15:28:13 2001
-@@ -169,6 +169,7 @@
+diff -Nur w3m-0.2.3.2.orig/url.c w3m-0.2.3.2/url.c
+--- w3m-0.2.3.2.orig/url.c	Fri Dec  7 08:58:07 2001
++++ w3m-0.2.3.2/url.c	Sun Dec 23 15:22:48 2001
+@@ -239,6 +239,7 @@
+ {
+     if (ssl_ctx != NULL)
+ 	SSL_CTX_free(ssl_ctx);
++    ssl_ctx = NULL;
+ }
  
- #ifdef USE_SSL
- SSL_CTX *ssl_ctx = NULL;
-+static ssl_atexit_done=0;
- 
- void
- free_ssl_ctx()
-@@ -269,6 +270,7 @@
- 	    }
- 	    if (ng) {
- 		free_ssl_ctx();
-+		ssl_ctx = NULL;
- 		goto eend;
- 	    }
- 	}
-@@ -276,7 +278,10 @@
+ #if SSLEAY_VERSION_NUMBER >= 0x00905100
+@@ -288,7 +289,6 @@
+ 	ssl_path_modified = 1;
+ #else
+ 	free_ssl_ctx();
+-	ssl_ctx = NULL;
+ #endif
+     }
+ #ifdef USE_SSL_VERIFY
+@@ -298,7 +298,6 @@
+     }
+     if (ssl_path_modified) {
+ 	free_ssl_ctx();
+-	ssl_ctx = NULL;
+ 	ssl_path_modified = 0;
+     }
+ #endif				/* defined(USE_SSL_VERIFY) */
+@@ -350,9 +349,6 @@
  #endif				/* defined(USE_SSL_VERIFY) */
  	    SSL_CTX_set_default_verify_paths(ssl_ctx);
  #endif				/* SSLEAY_VERSION_NUMBER >= 0x0800 */
--	atexit(free_ssl_ctx);
-+	if(!ssl_atexit_done) {
-+	    ssl_atexit_done=1;
-+	    atexit(free_ssl_ctx);
-+	}
+-/*** by inu
+-        atexit(free_ssl_ctx);
+-*/
      }
      handle = SSL_new(ssl_ctx);
      SSL_set_fd(handle, sock);

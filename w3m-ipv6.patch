@@ -1,0 +1,14 @@
+--- w3m-0.2.3.2/configure.orig	Fri Dec 21 03:11:50 2001
++++ w3m-0.2.3.2/configure	Sun Dec 23 00:43:31 2001
+@@ -1760,9 +1760,9 @@
+ 
+ if $cc $cflags -o _zmachdep _zmachdep.c $extlib > /dev/null 2>&1
+ then
+-  if ./_zmachdep; then
++#  if ./_zmachdep; then
+     def_ipv6="#define INET6"
+-  fi
++#  fi
+   case $sysname in
+   *BSD|*bsd)
+     cat > _zmachdep.c <<EOF

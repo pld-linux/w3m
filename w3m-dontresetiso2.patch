@@ -7,9 +7,9 @@ diff -Nur w3m-0.2.0.orig/terms.c w3m-0.2.0/terms.c
  {
 -    if (DisplayCode != CODE_EUC && DisplayCode != CODE_SJIS)
 -#if defined(__EMX__)&&!defined(JP_CHARSET)
--      if(!CodePage)
+-	if (!CodePage)
 -#endif
--	writestr("\033(B");	/* designate US_ASCII */
+-	    writestr("\033(B");	/* designate US_ASCII */
      writestr(T_op);		/* turn off */
      writestr(T_me);
      if (!Do_not_use_ti_te) {
