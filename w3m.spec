@@ -81,6 +81,7 @@ xtermie lub na linuksowym framebufferze.
 %patch2 -p1
 
 %build
+cp -f /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
 %configure \
