@@ -4,7 +4,7 @@ Summary(fr):	Navigateur en mode texte pour le world wide web
 Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.1.9
+Version:	0.1.10
 Epoch:		1
 Release:	1
 License:	GPL
@@ -12,6 +12,7 @@ Group:		Applications/Networking
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
 Patch0:		w3m-config.patch
+patch1:		w3m-JP_CHARSET.patch
 URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.4-2
@@ -20,46 +21,49 @@ Provides:	webclient
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-This a terminal based WWW browser. While it does not make any attempt at
-displaying graphics, it has good support for HTML text formatting, forms,
-and tables.
+This a terminal based WWW browser. While it does not make any attempt
+at displaying graphics, it has good support for HTML text formatting,
+forms, and tables.
 
 %description -l de
 Dies ist ein WWW-Browser auf Terminal-Basis. Während kein Versuch
-unternommen wird, Grafiken darzustellen, so bietet er doch guten  Support
-für HTML-Textformatierung, Formulare und Tabellen.
+unternommen wird, Grafiken darzustellen, so bietet er doch guten
+Support für HTML-Textformatierung, Formulare und Tabellen.
 
 %description -l fr
-Navigateur WWW en mode texte. Bien qu'il n'affiche aucun graphique, il sait
-bien gérer le formatage HTML du texte, les formulaires et les tableaux.
+Navigateur WWW en mode texte. Bien qu'il n'affiche aucun graphique, il
+sait bien gérer le formatage HTML du texte, les formulaires et les
+tableaux.
 
 %description -l pl
-Przegl±darka WWW dzia³aj±c± w trybie tekstowym. Dobrze formatuje tekst w
-HTML, ale nie pozwala na wy¶wietlanie grafiki.
+Przegl±darka WWW dzia³aj±c± w trybie tekstowym. Dobrze formatuje tekst
+w HTML, ale nie pozwala na wy¶wietlanie grafiki.
 
 %description -l tr
-Metin ekranda çalýþan bir WWW tarayýcýdýr. Þekil gösteremese de, formlar ve
-tablolar için desteði vardýr.
+Metin ekranda çalýþan bir WWW tarayýcýdýr. Þekil gösteremese de,
+formlar ve tablolar için desteði vardýr.
 
 %prep
-%setup  -q -n %{name}
+%setup -q
 %patch0 -p1 
+%patch1 -p1 
 
 %build
 find -name CVS -type d |xargs rm -rf 
 ./configure <<EOF;
-%{_bindir}
+%attr(755,root,root) %{_bindir}
 %{_libdir}/w3m
 %{_datadir}/w3m
 2
 y
 y
 y
+n
 5
 y
 /bin/vi
 /bin/mail
-%{_bindir}/netscape
+%attr(755,root,root) %{_bindir}/netscape
 gcc
 $RPM_OPT_FLAGS
 -lncurses
