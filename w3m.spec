@@ -7,8 +7,9 @@ Name:		w3m
 Version:	0.1.6
 Epoch:		1
 Release:	1
-Copyright:	GPL
+License:	GPL
 Group:		Applications/Networking
+Group(pl):	Aplikacje/Sieciowe
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
 Patch0:		w3m-config.patch
@@ -16,25 +17,26 @@ Patch1:		w3m-perl.patch
 URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.4-2
+Provides:	webclient
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
-This a terminal based WWW browser. While it does not make any attempt
-at displaying graphics, it has good support for HTML text formatting,
-forms, and tables.
+This a terminal based WWW browser. While it does not make any attempt at
+displaying graphics, it has good support for HTML text formatting, forms,
+and tables.
 
 %description -l de
-Dies ist ein WWW-Browser auf Terminal-Basis. Während kein Versuch 
-unternommen wird, Grafiken darzustellen, so bietet er doch guten 
-Support für HTML-Textformatierung, Formulare und Tabellen. 
+Dies ist ein WWW-Browser auf Terminal-Basis. Während kein Versuch
+unternommen wird, Grafiken darzustellen, so bietet er doch guten  Support
+für HTML-Textformatierung, Formulare und Tabellen.
 
 %description -l fr
-Navigateur WWW en mode texte. Bien qu'il n'affiche aucun graphique, il
-sait bien gérer le formatage HTML du texte, les formulaires et les tableaux.
+Navigateur WWW en mode texte. Bien qu'il n'affiche aucun graphique, il sait
+bien gérer le formatage HTML du texte, les formulaires et les tableaux.
 
 %description -l pl
-Przegl±darka WWW dzia³aj±c± w trybie tekstowym. Dobrze formatuje tekst
-w HTML, ale nie pozwala na wy¶wietlanie grafiki.
+Przegl±darka WWW dzia³aj±c± w trybie tekstowym. Dobrze formatuje tekst w
+HTML, ale nie pozwala na wy¶wietlanie grafiki.
 
 %description -l tr
 Metin ekranda çalýþan bir WWW tarayýcýdýr. Þekil gösteremese de, formlar ve
@@ -56,7 +58,7 @@ y
 5
 /bin/vi
 /bin/mail
-/usr/bin/netscape
+%{_bindir}/netscape
 gcc
 $RPM_OPT_FLAGS
 -lncurses
@@ -77,7 +79,7 @@ make install DESTDIR=$RPM_BUILD_ROOT
 
 mv doc/w3m.1 $RPM_BUILD_ROOT%{_mandir}/man1/w3m.1
 
-gzip -9fn $RPM_BUILD_ROOT%{_mandir}/man1/* doc/*
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* doc/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
