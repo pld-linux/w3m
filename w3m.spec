@@ -6,19 +6,22 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.4.1
+Version:	0.4.2
 Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/w3m/%{name}-%{version}.tar.gz
-# Source0-md5:	b496ec119dc9734059035e70988dd470
+# Source0-md5:	56b8948468a19778fce0b1653579775a
 Patch0:		%{name}-dontresetiso2.patch
 Patch1:		%{name}-gzip_fallback.patch
 Patch2:		%{name}-nolibs.patch
 URL:		http://w3m.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	gc-devel
+BuildRequires:	gdk-pixbuf-devel >= 0.16.0
 BuildRequires:	gpm-devel
-BuildRequires:	imlib-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7c
 Provides:	webclient
@@ -78,39 +81,15 @@ xtermie lub na linuksowym framebufferze.
 %patch2 -p1
 
 %build
-use_ipv6=y; export use_ipv6
-./configure <<EOF
-%{_bindir}
-%{_libdir}/w3m
-%{_libdir}/w3m/cgi-bin
-%{_datadir}/w3m
-%{_mandir}
-%{_sysconfdir}/w3m
-2
-y
-5
-y
-y
-y
-y
-y
-n
-y
-n
-y
-y
-y
-y
-y
-y
-y
-/bin/vi
-/usr/bin/mozilla
-%{__cc}
-%{rpmcflags}
--lncurses
-%{rpmldflags}
-EOF
+%{__aclocal}
+%{__autoconf}
+%configure \
+	--enable-gopher \
+	--enable-keymap=lynx \
+	--with-editor=/bin/vi \
+	--with-mailer=/bin/mail \
+	--with-browser=/usr/bin/mozilla \
+	--with-termlib=ncurses
 
 %{__make}
 
@@ -118,7 +97,8 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
-%{__make} install install-helpfile DESTDIR=$RPM_BUILD_ROOT
+%{__make} install install-helpfile \
+	DESTDIR=$RPM_BUILD_ROOT
 
 # symlink instead of duplicated file
 ln -sf w3mhelp-lynx_en.html $RPM_BUILD_ROOT%{_datadir}/w3m/w3mhelp.html

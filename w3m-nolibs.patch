@@ -1,11 +1,11 @@
---- w3m-0.3.2.2/configure.orig	Mon Oct 28 18:09:20 2002
-+++ w3m-0.3.2.2/configure	Sun Jan  5 23:15:04 2003
-@@ -1027,7 +1027,7 @@
- extlib=''
+--- w3m-0.4.2/configure.in.orig	2003-05-06 18:24:51.000000000 +0200
++++ w3m-0.4.2/configure.in	2003-10-08 00:09:19.277434968 +0200
+@@ -62,7 +62,7 @@
+ AC_W3M_EXT_BROWSER
  
- case $sysname in
--  *bsd|*BSD)
-+  *bsd|*BSD|Linux)
-     searchlibs=""
-     ;;
-   *)
+ dnl Checks for ext libs
+-for lib in bsd BSD 44bsd socket nsl dld dl
++for lib in dl
+ do
+  AC_W3M_EXTLIBS($lib)
+ done
