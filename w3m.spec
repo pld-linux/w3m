@@ -1,6 +1,4 @@
 #
-# TODO: remove imlib support or create two separate versions
-#       (with and without imlib)
 Summary:	Text based browser for the world wide web
 Summary(de):	Text-Browser für das WWW
 Summary(es):	w3m es un paginador, pero puede usarse también como un navegador WWW
@@ -10,7 +8,7 @@ Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegado
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
 Version:	0.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
@@ -56,6 +54,19 @@ texto.
 %description -l tr
 Metin ekranda çalýþan bir WWW tarayýcýdýr. Þekil gösteremese de,
 formlar ve tablolar için desteði vardýr.
+
+%package imgdisplay
+
+Summary:	Image display support for w3m
+Summary(pl):	Wsparcie dla wy¶wietlania obrazków dla w3m
+Group:		Applications/Networking
+Requires:	%{name} = %{version}
+
+%description imgdisplay
+Install this package if you want to display images in xterm (!!!) w3m session.
+
+%description imgdisplay -l pl
+Zainstaluj ten pakiet je¶li chcesz ay w3m wysietla³ obrazki w xtermie (!!!).
 
 %prep
 %setup -q
@@ -112,10 +123,17 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.gz *.gz doc/*.html
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/w3m
-%attr(755,root,root) %{_libdir}/w3m/*
+%attr(755,root,root) %{_libdir}/w3m/*.cgi
+%attr(755,root,root) %{_libdir}/w3m/inflate
+%attr(755,root,root) %{_libdir}/w3m/w3mbookmark
+%attr(755,root,root) %{_libdir}/w3m/w3mhelperpanel
 %dir %{_datadir}/w3m
 %{_datadir}/w3m/w3mhelp.html
 %{_datadir}/w3m/w3mhelp*en.*
 %lang(ja) %{_datadir}/w3m/w3mhelp*ja.*
 %{_datadir}/w3m/w3mhelp-funcname.pl
 %{_mandir}/man1/*
+
+%files imgdisplay
+%attr(755,root,root) %{_libdir}/w3m/w3mimgdisplay
+%attr(755,root,root) %{_libdir}/w3m/w3mimgsize
