@@ -1,0 +1,15 @@
+diff -Nur w3m-0.2.0.orig/terms.c w3m-0.2.0/terms.c
+--- w3m-0.2.0.orig/terms.c	Wed Feb  7 07:20:14 2001
++++ w3m-0.2.0/terms.c	Thu Apr  5 23:56:31 2001
+@@ -313,11 +313,6 @@
+ void
+ reset_tty(void)
+ {
+-    if (DisplayCode != CODE_EUC && DisplayCode != CODE_SJIS)
+-#if defined(__EMX__)&&!defined(JP_CHARSET)
+-      if(!CodePage)
+-#endif
+-	writestr("\033(B");	/* designate US_ASCII */
+     writestr(T_op);		/* turn off */
+     writestr(T_me);
+     if (!Do_not_use_ti_te) {
