@@ -1,0 +1,27 @@
+diff -Nur w3m.orig/config.h w3m/config.h
+--- w3m.orig/config.h	Fri Oct 15 10:37:03 1999
++++ w3m/config.h	Tue Oct 19 19:04:59 1999
+@@ -23,18 +23,18 @@
+ /*
+    If you want to use IPv6, define this symbol.
+  */
+-#undef INET6
++#define INET6
+ 
+ /**********************************************************/
+ #ifdef makefile_parameter
+ 
+-BIN_DIR = /usr/local/bin
+-HELP_DIR = /usr/local/lib
++BIN_DIR = /usr/bin
++HELP_DIR = /usr/share/w3m
+ HELP_FILE = w3mhelp_ja.html
+-SYS_LIBRARIES =  -lbsd -lnsl -ltermcap  -L/usr/local/ssl/lib -lssl -lcrypto
++SYS_LIBRARIES =  -lbsd -lnsl -lncurses -L/usr/lib -lssl -lsslcrypto
+ LOCAL_LIBRARIES = 
+ CC = gcc
+-MYCFLAGS = -O3 -I./gc  -I/usr/local/ssl/include -I/usr/local/ssl/include/openssl
++MYCFLAGS = -I./gc -I/usr/include/openssl
+ KEYBIND_SRC = keybind.c
+ KEYBIND_OBJ = keybind.o
+ EXT=
