@@ -7,7 +7,7 @@ Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegado
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
 Version:	0.3.1
-Release:	1
+Release:	1.1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
@@ -80,7 +80,7 @@ use_ipv6=y; export use_ipv6
 %{_bindir}
 %{_libdir}/w3m
 %{_datadir}/w3m
-%{_mandir}/man1
+%{_mandir}
 %{_sysconfdir}/w3m
 2
 y
@@ -113,7 +113,6 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 %{__make} install install-helpfile DESTDIR=$RPM_BUILD_ROOT
 
-mv -f doc/w3m.1 $RPM_BUILD_ROOT%{_mandir}/man1/w3m.1
 # symlink instead of duplicated file
 ln -sf w3mhelp-lynx_en.html $RPM_BUILD_ROOT%{_datadir}/w3m/w3mhelp.html
 
@@ -135,7 +134,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/w3m/w3mhelp*en.*
 %lang(ja) %{_datadir}/w3m/w3mhelp*ja.*
 %{_datadir}/w3m/w3mhelp-funcname.pl
-%{_mandir}/man1/*
+%{_mandir}/man1/*.1*
+%lang(ja) %{_mandir}/ja/man1/*.1*
 
 %files imgdisplay
 %defattr(644,root,root,755)
