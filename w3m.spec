@@ -23,7 +23,7 @@ BuildRequires:	gc-devel
 BuildRequires:	gdk-pixbuf-devel >= 0.16.0
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.7d
 Provides:	webclient
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
