@@ -4,13 +4,15 @@ Summary(fr):	Navigateur en mode texte pour le world wide web
 Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	991203
+Version:	0.1.6
+Epoch:		1
 Release:	1
 Copyright:	GPL
 Group:		Applications/Networking
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
-Patch0:		%{name}-config.patch
+Patch0:		w3m-config.patch
+Patch1:		w3m-perl.patch
 URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.4-2
@@ -39,12 +41,15 @@ Metin ekranda çalýþan bir WWW tarayýcýdýr. Þekil gösteremese de, formlar ve
 tablolar için desteði vardýr.
 
 %prep
-%setup -q -n %{name}
-%patch0 -p1 -b .wiget
+%setup  -q -n %{name}
+%patch0 -p1 
+%patch1 -p1 
 
 %build
+find -name CVS -type d |xargs rm -rf 
 ./configure <<EOF;
 %{_bindir}
+%{_libdir}/w3m
 %{_datadir}/w3m
 2
 y
@@ -81,5 +86,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/*.gz
 %attr(755,root,root) %{_bindir}/*
+%{_libdir}/w3m
 %{_datadir}/w3m
 %{_mandir}/man1/*
