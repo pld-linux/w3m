@@ -7,7 +7,7 @@ Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegado
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
 Version:	0.2.4
-Release:	1
+Release:	2
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
