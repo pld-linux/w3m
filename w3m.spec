@@ -71,20 +71,17 @@ $RPM_OPT_FLAGS
 
 EOF
 
-LDFLAGS="-s"; export LDFLAGS
-
 %{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 mv doc/w3m.1 $RPM_BUILD_ROOT%{_mandir}/man1/w3m.1
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* doc/*
+gzip -9nf doc/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
