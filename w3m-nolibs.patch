@@ -1,0 +1,11 @@
+--- w3m-0.3.2.2/configure.orig	Mon Oct 28 18:09:20 2002
++++ w3m-0.3.2.2/configure	Sun Jan  5 23:15:04 2003
+@@ -1027,7 +1027,7 @@
+ extlib=''
+ 
+ case $sysname in
+-  *bsd|*BSD)
++  *bsd|*BSD|Linux)
+     searchlibs=""
+     ;;
+   *)

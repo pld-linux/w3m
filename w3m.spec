@@ -6,14 +6,15 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.3.1
-Release:	2
+Version:	0.3.2.2
+Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dontresetiso2.patch
 Patch1:		%{name}-gzip_fallback.patch
+Patch2:		%{name}-nolibs.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	gpm-devel
 BuildRequires:	imlib-devel
@@ -73,6 +74,7 @@ xtermie(!!!).
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 use_ipv6=y; export use_ipv6
@@ -89,6 +91,8 @@ y
 y
 y
 y
+y
+y
 n
 y
 y
@@ -98,7 +102,7 @@ y
 y
 y
 /bin/vi
-%{_prefix}/X11R6/bin/netscape
+/usr/X11R6/bin/netscape
 %{__cc}
 %{rpmcflags}
 -lncurses
@@ -140,4 +144,3 @@ rm -rf $RPM_BUILD_ROOT
 %files imgdisplay
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/w3m/w3mimgdisplay
-%attr(755,root,root) %{_libdir}/w3m/w3mimgsize
