@@ -1,0 +1,16 @@
+--- w3m-0.3/file.c.old	Wed Jul  3 08:02:45 2002
++++ w3m-0.3/file.c	Wed Jul  3 08:28:01 2002
+@@ -336,6 +336,13 @@
+     struct stat stbuf;
+ 
+     uf->guess_type = NULL;
++    if (stat(path, &stbuf) == -1
++	&& strncmp(path + strlen(path) - 3, ".gz", 3) != 0) {
++	char *tmp_path = (char *)malloc(sizeof(".gz") + strlen(path));
++	stpcpy(stpcpy(tmp_path, path), ".gz");
++	free(path);
++	path = tmp_path;
++    } 
+     if (path == NULL || *path == '\0' ||
+ 	stat(path, &stbuf) == -1 || NOT_REGULAR(stbuf.st_mode)) {
+ 	uf->stream = NULL;
