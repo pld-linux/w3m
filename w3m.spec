@@ -11,7 +11,7 @@ Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/w3m/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dontresetiso2.patch
 Patch1:		%{name}-gzip_fallback.patch
 Patch2:		%{name}-nolibs.patch
