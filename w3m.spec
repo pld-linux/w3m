@@ -9,9 +9,11 @@ Release:	1
 Epoch:		1
 License:	GPL
 Group:		Applications/Networking
+Group(de):	Applikationen/Netzwerkwesen
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
-Patch0:		w3m-config.patch
+Patch0:		%{name}-config.patch
+Patch1:		%{name}-not-constant.patch
 URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.4-2
@@ -45,6 +47,7 @@ formlar ve tablolar için desteði vardýr.
 %prep
 %setup -q
 %patch0 -p1 
+%patch1 -p1
 
 %build
 find -name CVS -type d |xargs rm -rf 
@@ -64,7 +67,7 @@ y
 /bin/mail
 %/usr/X11R6/bin/netscape
 %{__cc}
-$RPM_OPT_FLAGS
+%{rpmcflags}
 -lncurses
 -lnsl -lssl -lcrypto
 
@@ -78,7 +81,7 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-mv doc/w3m.1 $RPM_BUILD_ROOT%{_mandir}/man1/w3m.1
+mv -f doc/w3m.1 $RPM_BUILD_ROOT%{_mandir}/man1/w3m.1
 
 gzip -9nf doc/*
 
