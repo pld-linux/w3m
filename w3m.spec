@@ -1,5 +1,5 @@
 Summary:	Text based browser for the world wide web
-Summary(de):	Text-Browser für das WWW 
+Summary(de):	Text-Browser für das WWW
 Summary(es):	w3m es un paginador, pero puede usarse también como un navegador WWW
 Summary(fr):	Navigateur en mode texte pour le world wide web
 Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
@@ -56,7 +56,7 @@ formlar ve tablolar için desteði vardýr.
 
 %prep
 %setup -q
-%patch0 -p1 
+%patch0 -p1
 %patch1 -p1
 
 %build
@@ -83,7 +83,7 @@ y
 %{rpmldflags}
 EOF
 
-%{__make} 
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
