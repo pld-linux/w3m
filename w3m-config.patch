@@ -1,24 +1,30 @@
-diff -Nur w3m.orig/config.h w3m/config.h
---- w3m.orig/config.h	Fri Oct 15 10:37:03 1999
-+++ w3m/config.h	Fri Nov 12 21:08:35 1999
-@@ -28,27 +28,27 @@
+diff -Nru w3m/config.h w3m.new/config.h
+--- w3m/config.h	Wed Oct 27 07:04:00 1999
++++ w3m.new/config.h	Fri Nov 19 05:43:27 1999
+@@ -23,31 +23,31 @@
+ /*
+    If you want to use IPv6, define this symbol.
+  */
+-#undef INET6
++#define INET6
+ 
  /**********************************************************/
  #ifdef makefile_parameter
  
 -BIN_DIR = /usr/local/bin
--HELP_DIR = /usr/local/lib
+-HELP_DIR = /usr/local/lib/w3m
 -HELP_FILE = w3mhelp_ja.html
--SYS_LIBRARIES =  -lbsd -lnsl -ltermcap  -L/usr/local/ssl/lib -lssl -lcrypto
+-SYS_LIBRARIES =  -lbsd -lnsl -lncurses 
 +BIN_DIR = /usr/bin
 +HELP_DIR = /usr/share/w3m
 +HELP_FILE = w3mhelp-lynx_en.html
 +SYS_LIBRARIES =  -lbsd -lnsl -lncurses  -L/usr/lib -lssl -lsslcrypto
  LOCAL_LIBRARIES = 
  CC = gcc
--MYCFLAGS = -O3 -I./gc  -I/usr/local/ssl/include -I/usr/local/ssl/include/openssl
+-MYCFLAGS = -g -I./gc  
 -KEYBIND_SRC = keybind.c
 -KEYBIND_OBJ = keybind.o
-+MYCFLAGS = -g -I./gc -I/usr/include/openssl
++MYCFLAGS =-I./gc -I/usr/include/openssl
 +KEYBIND_SRC = keybind_lynx.c
 +KEYBIND_OBJ = keybind_lynx.o
  EXT=
@@ -33,24 +39,24 @@ diff -Nur w3m.orig/config.h w3m/config.h
  #define JA 0
  #define EN 1
 -#define LANG JA
--#define KANJI_SYMBOLS
 +#define LANG EN
-+#undef KANJI_SYMBOLS
+ #define KANJI_SYMBOLS
  #define COLOR
- #define MOUSE
- #define MENU
-@@ -58,7 +58,7 @@
+ #undef MOUSE
+@@ -58,8 +58,8 @@
  #define DEF_EDITOR "/bin/vi"
  #define DEF_MAILER "/bin/mail"
  #define DEF_EXT_BROWSER "/usr/bin/lynx"
--#define HELP_FILE "/usr/local/lib/w3mhelp.html"
+-#define LIB_DIR "/usr/local/lib/w3m"
+-#define HELP_FILE "/usr/local/lib/w3m/w3mhelp.html"
++#define LIB_DIR "/usr/share/w3m"
 +#define HELP_FILE "/usr/share/w3m/w3mhelp.html"
  #define BOOKMARK "~/.w3m/bookmark.html"
  #define KEYMAP_FILE  "~/.w3m/keymap"
  #define MENU_FILE    "~/.w3m/menu"
-diff -Nur w3m.orig/config.param w3m/config.param
---- w3m.orig/config.param	Thu Jan  1 01:00:00 1970
-+++ w3m/config.param	Fri Nov 12 21:06:48 1999
+diff -Nru w3m/config.param w3m.new/config.param
+--- w3m/config.param	Thu Jan  1 01:00:00 1970
++++ w3m.new/config.param	Fri Nov 19 05:39:32 1999
 @@ -0,0 +1,17 @@
 +# Configuretion at voyager
 +def_bindir=/usr/bin
