@@ -5,7 +5,7 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
 Version:	0.2.1
-Release:	3
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Applications/Networking
