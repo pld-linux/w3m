@@ -12,6 +12,7 @@ Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/w3m/%{name}-%{version}.tar.gz
+# Source0-md5:	b496ec119dc9734059035e70988dd470
 Patch0:		%{name}-dontresetiso2.patch
 Patch1:		%{name}-gzip_fallback.patch
 Patch2:		%{name}-nolibs.patch
