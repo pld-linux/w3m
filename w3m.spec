@@ -7,8 +7,8 @@ Name:		w3m
 Version:	991015
 Release:	1
 Copyright:	GPL
-Group:		Networking
-Group(pl):	Sieciowe
+Group:		Applications/Networking
+Group(pl):	Aplikacje/Sieciowe
 Source0:	http://sol.slcc.edu/lynx/current/%{name}-%{version}.tar.gz
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-makefile.patch
@@ -29,8 +29,8 @@ Navigateur WWW en mode texte. Bien qu'il n'affiche aucun graphique, il
 sait bien gérer le formatage HTML du texte, les formulaires et les tableaux.
 
 %description -l pl
-Lynx jest przegl±dark± WWW dzia³aj±c± w trybie tekstowym. Dobrze
-formatuje tekst w HTML ale nie pozwala na wy¶wietlanie grafiki.
+Przegl±darka WWW dzia³aj±c± w trybie tekstowym. Dobrze formatuje tekst
+w HTML, ale nie pozwala na wy¶wietlanie grafiki.
 
 %description -l tr
 Metin ekranda çalýþan bir WWW tarayýcýdýr. Þekil gösteremese de, formlar ve
