@@ -5,7 +5,7 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
 Version:	0.2.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Applications/Networking
@@ -14,6 +14,7 @@ Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-config.patch
 Patch1:		%{name}-dontresetiso2.patch
+Patch2:		%{name}-ssl-segv.patch
 URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.6a
@@ -48,6 +49,7 @@ formlar ve tablolar için desteði vardýr.
 %setup -q
 %patch0 -p1 
 %patch1 -p1
+%patch2 -p1
 
 %build
 find -name CVS -type d |xargs rm -rf 
@@ -82,6 +84,8 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 mv -f doc/w3m.1 $RPM_BUILD_ROOT%{_mandir}/man1/w3m.1
+# symlink instead of duplicated file
+ln -sf w3mhelp-lynx_en.html $RPM_BUILD_ROOT%{_datadir}/w3m/w3mhelp.html
 
 gzip -9nf doc/*
 
@@ -93,5 +97,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.gz
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/w3m
-%{_datadir}/w3m
+%dir %{_datadir}/w3m
+%{_datadir}/w3m/w3mhelp.html
+%{_datadir}/w3m/w3mhelp*_en.html
+%lang(ja) %{_datadir}/w3m/w3mhelp*_ja.html
 %{_mandir}/man1/*

@@ -1,0 +1,30 @@
+--- w3m-0.2.1/url.c.orig	Fri Mar 23 02:51:04 2001
++++ w3m-0.2.1/url.c	Thu Jul 19 15:28:13 2001
+@@ -169,6 +169,7 @@
+ 
+ #ifdef USE_SSL
+ SSL_CTX *ssl_ctx = NULL;
++static ssl_atexit_done=0;
+ 
+ void
+ free_ssl_ctx()
+@@ -269,6 +270,7 @@
+ 	    }
+ 	    if (ng) {
+ 		free_ssl_ctx();
++		ssl_ctx = NULL;
+ 		goto eend;
+ 	    }
+ 	}
+@@ -276,7 +278,10 @@
+ #endif				/* defined(USE_SSL_VERIFY) */
+ 	    SSL_CTX_set_default_verify_paths(ssl_ctx);
+ #endif				/* SSLEAY_VERSION_NUMBER >= 0x0800 */
+-	atexit(free_ssl_ctx);
++	if(!ssl_atexit_done) {
++	    ssl_atexit_done=1;
++	    atexit(free_ssl_ctx);
++	}
+     }
+     handle = SSL_new(ssl_ctx);
+     SSL_set_fd(handle, sock);
