@@ -6,16 +6,15 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.4.2
-Release:	2
+Version:	0.5
+Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/w3m/%{name}-%{version}.tar.gz
-# Source0-md5:	56b8948468a19778fce0b1653579775a
-Patch0:		%{name}-dontresetiso2.patch
-Patch1:		%{name}-gzip_fallback.patch
-Patch2:		%{name}-nolibs.patch
+# Source0-md5:	31e470bcb09bad3150d73af760febe0c
+Patch0:		%{name}-gzip_fallback.patch
+Patch1:		%{name}-nolibs.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -78,7 +77,6 @@ xtermie lub na linuksowym framebufferze.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 cp -f /usr/share/automake/config.sub .
@@ -104,10 +102,12 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 # symlink instead of duplicated file
 ln -sf w3mhelp-lynx_en.html $RPM_BUILD_ROOT%{_datadir}/w3m/w3mhelp.html
 
+%find_lang %{name}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/*.html doc/{README,keymap,menu}.* NEWS
 %attr(755,root,root) %{_bindir}/*
