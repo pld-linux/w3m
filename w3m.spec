@@ -6,18 +6,18 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.2.4
-Release:	2
+Version:	0.3
+Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dontresetiso2.patch
-Patch1:		%{name}-ipv6.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	gpm-devel
+BuildRequires:	imlib-devel
 Provides:	webclient
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -57,7 +57,6 @@ formlar ve tablolar için desteði vardýr.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 ./configure <<EOF
@@ -69,6 +68,10 @@ formlar ve tablolar için desteði vardýr.
 y
 5
 y
+y
+y
+y
+n
 y
 y
 y
