@@ -20,7 +20,7 @@ URL:		http://w3m.sourceforge.net/
 BuildRequires:	gpm-devel
 BuildRequires:	imlib-devel
 BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	openssl-devel >= 0.9.6a
+BuildRequires:	openssl-devel >= 0.9.6m
 Provides:	webclient
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
