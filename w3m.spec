@@ -4,14 +4,16 @@ Summary(fr):	Navigateur en mode texte pour le world wide web
 Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	991015
+Version:	991028
 Release:	1
 Copyright:	GPL
 Group:		Applications/Networking
 Group(pl):	Aplikacje/Sieciowe
-Source0:	http://sol.slcc.edu/lynx/current/%{name}-%{version}.tar.gz
+Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-config.patch
-Patch1:		%{name}-makefile.patch
+URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
+BuildRequires:	ncurses-devel >= 5.0
+BuildRequires:	openssl-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -39,7 +41,6 @@ tablolar için desteði vardýr.
 %prep
 %setup -q -n %{name}
 %patch0 -p1
-%patch1 -p1
 
 %build
 LDFLAGS="-s"; export LDFLAGS
