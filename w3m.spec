@@ -6,8 +6,8 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.3
-Release:	3
+Version:	0.3.1
+Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
@@ -80,6 +80,7 @@ use_ipv6=y; export use_ipv6
 %{_bindir}
 %{_libdir}/w3m
 %{_datadir}/w3m
+%{_mandir}/man1
 %{_sysconfdir}/w3m
 2
 y
@@ -89,6 +90,7 @@ y
 y
 y
 n
+y
 y
 y
 y
@@ -127,6 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/w3m/inflate
 %attr(755,root,root) %{_libdir}/w3m/w3mbookmark
 %attr(755,root,root) %{_libdir}/w3m/w3mhelperpanel
+%attr(755,root,root) %{_libdir}/w3m/xface2xpm
 %dir %{_datadir}/w3m
 %{_datadir}/w3m/w3mhelp.html
 %{_datadir}/w3m/w3mhelp*en.*
