@@ -1,4 +1,4 @@
-# $Revision: 1.1 $
+# $Revision: 1.2 $
 Summary:	Text based browser for the world wide web
 Summary(de):	Text-Browser für das WWW 
 Summary(fr):	Navigateur en mode texte pour le world wide web
@@ -64,7 +64,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/*.gz
-%attr(755,root,root) %dir %{_datadir}/w3m
-%attr(644,root,root) %{_datadir}/w3m/*
 %attr(755,root,root) %{_bindir}/*
-%attr(644,root,root) %{_mandir}/man1/*
+%{_datadir}/w3m
+%{_mandir}/man1/*
