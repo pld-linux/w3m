@@ -51,7 +51,7 @@ formlar ve tablolar için desteði vardýr.
 %build
 find -name CVS -type d |xargs rm -rf 
 ./configure <<EOF;
-%attr(755,root,root) %{_bindir}
+%{_bindir}
 %{_libdir}/w3m
 %{_datadir}/w3m
 2
@@ -63,7 +63,7 @@ n
 y
 /bin/vi
 /bin/mail
-%attr(755,root,root) %{_bindir}/netscape
+%{_bindir}/netscape
 gcc
 $RPM_OPT_FLAGS
 -lncurses
