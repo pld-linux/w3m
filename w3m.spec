@@ -10,7 +10,6 @@ Release:	1
 License:	GPL
 Group:		Applications/Networking
 Group(pl):	Aplikacje/Sieciowe
-Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
 Patch0:		w3m-config.patch
 Patch1:		w3m-perl.patch
