@@ -1,3 +1,6 @@
+#
+# TODO: remove imlib support or create two separate versions
+#       (with and without imlib)
 Summary:	Text based browser for the world wide web
 Summary(de):	Text-Browser für das WWW
 Summary(es):	w3m es un paginador, pero puede usarse también como un navegador WWW
@@ -14,10 +17,10 @@ Group:		Applications/Networking
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dontresetiso2.patch
 URL:		http://w3m.sourceforge.net/
-BuildRequires:	ncurses-devel >= 5.0
-BuildRequires:	openssl-devel >= 0.9.6a
 BuildRequires:	gpm-devel
 BuildRequires:	imlib-devel
+BuildRequires:	ncurses-devel >= 5.0
+BuildRequires:	openssl-devel >= 0.9.6a
 Provides:	webclient
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -59,6 +62,7 @@ formlar ve tablolar için desteði vardýr.
 %patch0 -p1
 
 %build
+use_ipv6=y; export use_ipv6
 ./configure <<EOF
 %{_bindir}
 %{_libdir}/w3m
@@ -77,8 +81,8 @@ y
 y
 y
 y
+y
 /bin/vi
-/bin/mail
 %{_prefix}/X11R6/bin/netscape
 %{__cc}
 %{rpmcflags}
