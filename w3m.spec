@@ -4,15 +4,14 @@ Summary(fr):	Navigateur en mode texte pour le world wide web
 Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.1.10
+Version:	0.2.0
+Release:	1
 Epoch:		1
-Release:	2
 License:	GPL
 Group:		Applications/Networking
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
 Patch0:		w3m-config.patch
-patch1:		w3m-JP_CHARSET.patch
 URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.4-2
@@ -46,7 +45,6 @@ formlar ve tablolar için desteði vardýr.
 %prep
 %setup -q
 %patch0 -p1 
-%patch1 -p1 
 
 %build
 find -name CVS -type d |xargs rm -rf 
@@ -59,12 +57,13 @@ y
 y
 y
 n
+y
 5
 y
 /bin/vi
 /bin/mail
-%{_bindir}/netscape
-gcc
+%/usr/X11R6/bin/netscape
+%{__cc}
 $RPM_OPT_FLAGS
 -lncurses
 -lnsl -lssl -lcrypto
