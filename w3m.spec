@@ -7,13 +7,15 @@ Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegado
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
 Version:	0.3.1
-Release:	2
+Release:	3
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dontresetiso2.patch
 Patch1:		%{name}-gzip_fallback.patch
+Patch2:		%{name}-htmlquote.patch
+Patch3:		%{name}-img-htmlquote.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	gpm-devel
 BuildRequires:	imlib-devel
@@ -73,6 +75,8 @@ xtermie(!!!).
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p0
+%patch3 -p1
 
 %build
 use_ipv6=y; export use_ipv6
