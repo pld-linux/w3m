@@ -61,7 +61,7 @@ formlar ve tablolar için desteði vardýr.
 Summary:	Image display support for w3m
 Summary(pl):	Wsparcie dla wy¶wietlania obrazków dla w3m
 Group:		Applications/Networking
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description imgdisplay
 Install this package if you want to display images in w3m run on xterm
