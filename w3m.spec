@@ -1,4 +1,3 @@
-# $Revision: 1.2 $
 Summary:	Text based browser for the world wide web
 Summary(de):	Text-Browser für das WWW 
 Summary(fr):	Navigateur en mode texte pour le world wide web
