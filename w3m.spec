@@ -6,7 +6,7 @@ Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
 Version:	0.1.10
 Epoch:		1
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Networking
 Group(pl):	Aplikacje/Sieciowe
