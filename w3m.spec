@@ -18,7 +18,7 @@ URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.4-2
 Provides:	webclient
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This a terminal based WWW browser. While it does not make any attempt at
