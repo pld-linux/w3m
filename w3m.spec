@@ -13,8 +13,7 @@ Group(de):	Applikationen/Netzwerkwesen
 Group(pl):	Aplikacje/Sieciowe
 Source0:	ftp://ei5nazha.yz.yamagata-u.ac.jp/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-config.patch
-Patch1:		%{name}-not-constant.patch
-Patch2:		%{name}-dontresetiso2.patch
+Patch1:		%{name}-dontresetiso2.patch
 URL:		http://ei5nazha.yz.yamagata-u.ac.jp/~aito/w3m/eng/
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.6a
@@ -48,8 +47,7 @@ formlar ve tablolar için desteði vardýr.
 %prep
 %setup -q
 %patch0 -p1 
-#%patch1 -p1
-%patch2 -p1
+%patch1 -p1
 
 %build
 find -name CVS -type d |xargs rm -rf 
