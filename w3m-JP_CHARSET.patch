@@ -1,0 +1,14 @@
+diff -Nru w3m-0.1.10/display.c w3m-0.1.10.new/display.c
+--- w3m-0.1.10/display.c	Tue Jun  6 07:39:13 2000
++++ w3m-0.1.10.new/display.c	Wed Jun 21 14:53:17 2000
+@@ -717,8 +717,10 @@
+     }
+     else {
+         buf->pos = l->len -1;
++#ifdef JP_CHARSET
+         if (CharType(p[buf->pos]) == PC_KANJI2)
+             buf->pos--;
++#endif
+     }
+     cpos = COLPOS(l, buf->pos);
+     buf->visualpos = cpos - buf->currentColumn;
