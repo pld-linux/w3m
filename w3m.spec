@@ -6,13 +6,16 @@ Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(pt_BR):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.3
-Release:	2
+Version:	0.3.1
+Release:	3
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
 Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/w3m/%{name}-%{version}.tar.gz
 Patch0:		%{name}-dontresetiso2.patch
+Patch1:		%{name}-gzip_fallback.patch
+Patch2:		%{name}-htmlquote.patch
+Patch3:		%{name}-img-htmlquote.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	gpm-devel
 BuildRequires:	imlib-devel
@@ -71,6 +74,9 @@ xtermie(!!!).
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+%patch2 -p0
+%patch3 -p1
 
 %build
 use_ipv6=y; export use_ipv6
@@ -78,6 +84,7 @@ use_ipv6=y; export use_ipv6
 %{_bindir}
 %{_libdir}/w3m
 %{_datadir}/w3m
+%{_mandir}
 %{_sysconfdir}/w3m
 2
 y
@@ -87,6 +94,7 @@ y
 y
 y
 n
+y
 y
 y
 y
@@ -109,30 +117,29 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 %{__make} install install-helpfile DESTDIR=$RPM_BUILD_ROOT
 
-mv -f doc/w3m.1 $RPM_BUILD_ROOT%{_mandir}/man1/w3m.1
 # symlink instead of duplicated file
 ln -sf w3mhelp-lynx_en.html $RPM_BUILD_ROOT%{_datadir}/w3m/w3mhelp.html
-
-gzip -9nf doc/{README,keymap,menu}.* NEWS
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc doc/*.gz *.gz doc/*.html
+%doc doc/*.html doc/{README,keymap,menu}.* NEWS
 %attr(755,root,root) %{_bindir}/*
 %dir %{_libdir}/w3m
 %attr(755,root,root) %{_libdir}/w3m/*.cgi
 %attr(755,root,root) %{_libdir}/w3m/inflate
 %attr(755,root,root) %{_libdir}/w3m/w3mbookmark
 %attr(755,root,root) %{_libdir}/w3m/w3mhelperpanel
+%attr(755,root,root) %{_libdir}/w3m/xface2xpm
 %dir %{_datadir}/w3m
 %{_datadir}/w3m/w3mhelp.html
 %{_datadir}/w3m/w3mhelp*en.*
 %lang(ja) %{_datadir}/w3m/w3mhelp*ja.*
 %{_datadir}/w3m/w3mhelp-funcname.pl
-%{_mandir}/man1/*
+%{_mandir}/man1/*.1*
+%lang(ja) %{_mandir}/ja/man1/*.1*
 
 %files imgdisplay
 %defattr(644,root,root,755)

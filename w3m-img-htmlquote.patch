@@ -1,0 +1,26 @@
+diff -Nru w3m-0.3.2.1/file.c w3m-0.3.2.2/file.c
+--- w3m-0.3.2.1/file.c	2002-10-31 02:04:02.000000000 +0900
++++ w3m-0.3.2.2/file.c	2002-12-06 01:53:19.000000000 +0900
+@@ -3097,11 +3097,11 @@
+ 		Strcat_charp(tmp, html_quote(Strnew_charp_n(q, nw)->ptr));
+ 	    }
+ 	    else
+-		Strcat_charp(tmp, q);
++		Strcat_charp(tmp, html_quote(q));
+ 	}
+ 	else
+ #endif
+-	    Strcat_charp(tmp, q);
++	    Strcat_charp(tmp, html_quote(q));
+ 	goto img_end;
+     }
+     if (w > 0 && i > 0) {
+@@ -6241,7 +6241,7 @@
+ 	HTMLlineproc0(lineBuf2->ptr, &htmlenv1, internal);
+     }
+     if (obuf.status != R_ST_NORMAL)
+-	HTMLlineproc1(correct_irrtag(obuf.status)->ptr, &htmlenv1);
++	HTMLlineproc0(correct_irrtag(obuf.status)->ptr, &htmlenv1, internal);
+     obuf.status = R_ST_NORMAL;
+     completeHTMLstream(&htmlenv1, &obuf);
+     flushline(&htmlenv1, &obuf, 0, 2, htmlenv1.limit);
