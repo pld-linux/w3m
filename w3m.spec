@@ -1,4 +1,3 @@
-#
 Summary:	Text based browser for the world wide web
 Summary(de):	Text-Browser für das WWW
 Summary(es):	w3m es un paginador, pero puede usarse también como un navegador WWW
@@ -56,17 +55,18 @@ Metin ekranda çalýþan bir WWW tarayýcýdýr. Þekil gösteremese de,
 formlar ve tablolar için desteði vardýr.
 
 %package imgdisplay
-
 Summary:	Image display support for w3m
 Summary(pl):	Wsparcie dla wy¶wietlania obrazków dla w3m
 Group:		Applications/Networking
 Requires:	%{name} = %{version}
 
 %description imgdisplay
-Install this package if you want to display images in xterm (!!!) w3m session.
+Install this package if you want to display images in xterm(!!!) w3m
+session.
 
 %description imgdisplay -l pl
-Zainstaluj ten pakiet je¶li chcesz ay w3m wysietla³ obrazki w xtermie (!!!).
+Zainstaluj ten pakiet je¶li chcesz aby w3m wy¶wietla³ obrazki w
+xtermie(!!!).
 
 %prep
 %setup -q
@@ -135,5 +135,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/*
 
 %files imgdisplay
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/w3m/w3mimgdisplay
 %attr(755,root,root) %{_libdir}/w3m/w3mimgsize
