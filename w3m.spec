@@ -4,8 +4,8 @@ Summary(fr):	Navigateur en mode texte pour le world wide web
 Summary(pl):	Przegl±darka WWW pracuj±ca w trybie tekstowym
 Summary(tr):	Metin ekranda WWW tarayýcý
 Name:		w3m
-Version:	0.2.0
-Release:	3
+Version:	0.2.1
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Applications/Networking
@@ -48,7 +48,7 @@ formlar ve tablolar için desteði vardýr.
 %prep
 %setup -q
 %patch0 -p1 
-%patch1 -p1
+#%patch1 -p1
 %patch2 -p1
 
 %build
