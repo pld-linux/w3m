@@ -82,6 +82,7 @@ xtermie lub na linuksowym framebufferze.
 
 %build
 cp -f /usr/share/automake/config.sub .
+%{__gettextize}
 %{__aclocal}
 %{__autoconf}
 %configure \
