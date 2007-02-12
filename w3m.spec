@@ -1,10 +1,10 @@
 Summary:	Text based browser for the world wide web
-Summary(de.UTF-8):   Text-Browser für das WWW
-Summary(es.UTF-8):   w3m es un paginador, pero puede usarse también como un navegador WWW
-Summary(fr.UTF-8):   Navigateur en mode texte pour le world wide web
-Summary(pl.UTF-8):   Przeglądarka WWW pracująca w trybie tekstowym
-Summary(pt_BR.UTF-8):   O w3m é um paginador, mas pode ser usado também como um navegador WWW
-Summary(tr.UTF-8):   Metin ekranda WWW tarayıcı
+Summary(de.UTF-8):	Text-Browser für das WWW
+Summary(es.UTF-8):	w3m es un paginador, pero puede usarse también como un navegador WWW
+Summary(fr.UTF-8):	Navigateur en mode texte pour le world wide web
+Summary(pl.UTF-8):	Przeglądarka WWW pracująca w trybie tekstowym
+Summary(pt_BR.UTF-8):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
+Summary(tr.UTF-8):	Metin ekranda WWW tarayıcı
 Name:		w3m
 Version:	0.5.1
 Release:	1
@@ -63,7 +63,7 @@ formlar ve tablolar için desteği vardır.
 
 %package imgdisplay
 Summary:	Image display support for w3m
-Summary(pl.UTF-8):   Wsparcie dla wyświetlania obrazków dla w3m
+Summary(pl.UTF-8):	Wsparcie dla wyświetlania obrazków dla w3m
 Group:		Applications/Networking
 Requires:	%{name} = %{epoch}:%{version}
 
