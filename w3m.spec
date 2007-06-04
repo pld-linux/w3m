@@ -6,21 +6,21 @@ Summary(pl.UTF-8):	Przeglądarka WWW pracująca w trybie tekstowym
 Summary(pt_BR.UTF-8):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr.UTF-8):	Metin ekranda WWW tarayıcı
 Name:		w3m
-Version:	0.5.1
+Version:	0.5.2
 Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
 Source0:	http://dl.sourceforge.net/w3m/%{name}-%{version}.tar.gz
-# Source0-md5:	0678b72e07e69c41709d71ef0fe5da13
+# Source0-md5:	ba06992d3207666ed1bf2dcf7c72bf58
 Patch0:		%{name}-gzip_fallback.patch
 Patch1:		%{name}-nolibs.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gc-devel
-BuildRequires:	gdk-pixbuf-devel >= 0.16.0
 BuildRequires:	gettext-devel
+BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -65,7 +65,7 @@ formlar ve tablolar için desteği vardır.
 Summary:	Image display support for w3m
 Summary(pl.UTF-8):	Wsparcie dla wyświetlania obrazków dla w3m
 Group:		Applications/Networking
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description imgdisplay
 Install this package if you want to display images in w3m run on xterm
@@ -79,6 +79,9 @@ xtermie lub na linuksowym framebufferze.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+
+# update acinclude.m4 from aclocal.m4 part
+head -n 893 aclocal.m4 > acinclude.m4
 
 %build
 cp -f /usr/share/automake/config.sub .
