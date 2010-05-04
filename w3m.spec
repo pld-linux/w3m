@@ -22,6 +22,7 @@ BuildRequires:	gc-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	gpm-devel
+BuildRequires:	imlib2-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pkgconfig
@@ -90,8 +91,10 @@ cp -f /usr/share/automake/config.sub .
 %{__autoconf}
 %configure \
 	--enable-gopher \
+	--enable-image="x11,fb,fb+s" \
 	--enable-keymap=lynx \
 	--with-editor=/bin/vi \
+	--with-imagelib="gdk-pixbuf" \
 	--with-mailer=/bin/mail \
 	--with-browser=/usr/bin/mozilla \
 	--with-termlib=ncurses
