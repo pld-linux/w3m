@@ -6,13 +6,13 @@ Summary(pl.UTF-8):	Przeglądarka WWW pracująca w trybie tekstowym
 Summary(pt_BR.UTF-8):	O w3m é um paginador, mas pode ser usado também como um navegador WWW
 Summary(tr.UTF-8):	Metin ekranda WWW tarayıcı
 Name:		w3m
-Version:	0.5.2
-Release:	6
+Version:	0.5.3
+Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
-Source0:	http://dl.sourceforge.net/w3m/%{name}-%{version}.tar.gz
-# Source0-md5:	ba06992d3207666ed1bf2dcf7c72bf58
+Source0:	http://download.sourceforge.net/w3m/%{name}-%{version}.tar.gz
+# Source0-md5:	1b845a983a50b8dec0169ac48479eacc
 Patch0:		%{name}-gzip_fallback.patch
 Patch1:		%{name}-nolibs.patch
 URL:		http://w3m.sourceforge.net/
@@ -82,7 +82,7 @@ xtermie lub na linuksowym framebufferze.
 %patch1 -p1
 
 # update acinclude.m4 from aclocal.m4 part
-head -n 893 aclocal.m4 > acinclude.m4
+#head -n 893 aclocal.m4 > acinclude.m4
 
 %build
 cp -f /usr/share/automake/config.sub .

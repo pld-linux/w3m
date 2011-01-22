@@ -5,7 +5,7 @@
  
  dnl Checks for ext libs
 -for lib in bsd BSD 44bsd socket nsl dld dl
-+for lib in dl
++for lib in dl tinfow tinfo
  do
   AC_W3M_EXTLIBS($lib)
  done
