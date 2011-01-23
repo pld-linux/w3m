@@ -64,7 +64,7 @@ formlar ve tablolar için desteği vardır.
 
 %package imgdisplay
 Summary:	Image display support for w3m
-Summary(pl.UTF-8):	Wsparcie dla wyświetlania obrazków dla w3m
+Summary(pl.UTF-8):	Wyświetlanie obrazków dla w3m
 Group:		Applications/Networking
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -73,16 +73,13 @@ Install this package if you want to display images in w3m run on xterm
 or Linux framebuffer.
 
 %description imgdisplay -l pl.UTF-8
-Zainstaluj ten pakiet jeśli chcesz aby w3m wyświetlał obrazki w
-xtermie lub na linuksowym framebufferze.
+Ten pakiet pozwala przeglądarce w3m wyświetlać obrazki w xtermie lub
+na linuksowym framebufferze.
 
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
-
-# update acinclude.m4 from aclocal.m4 part
-#head -n 893 aclocal.m4 > acinclude.m4
 
 %build
 cp -f /usr/share/automake/config.sub .
@@ -119,7 +116,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc doc/*.html doc/{README,keymap,menu}.* NEWS
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/w3m
+%attr(755,root,root) %{_bindir}/w3mman
 %dir %{_libdir}/w3m
 %attr(755,root,root) %{_libdir}/w3m/inflate
 %attr(755,root,root) %{_libdir}/w3m/xface2xpm
@@ -132,8 +130,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/w3m/w3mhelp*en.*
 %lang(ja) %{_datadir}/w3m/w3mhelp*ja.*
 %{_datadir}/w3m/w3mhelp-funcname.pl
-%{_mandir}/man1/*.1*
-%lang(ja) %{_mandir}/ja/man1/*.1*
+%{_mandir}/man1/w3m.1*
+%{_mandir}/man1/w3mman.1*
+%lang(ja) %{_mandir}/ja/man1/w3m.1*
 
 %files imgdisplay
 %defattr(644,root,root,755)
