@@ -11,7 +11,7 @@ Release:	1
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
-Source0:	http://download.sourceforge.net/w3m/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/w3m/%{name}-%{version}.tar.gz
 # Source0-md5:	1b845a983a50b8dec0169ac48479eacc
 Patch0:		%{name}-gzip_fallback.patch
 Patch1:		%{name}-nolibs.patch
@@ -20,12 +20,13 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gc-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	gpm-devel
+BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	imlib2-devel
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pkgconfig
+BuildRequires:	sed >= 4.0
 Provides:	webclient
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -81,6 +82,8 @@ na linuksowym framebufferze.
 %patch0 -p1
 %patch1 -p1
 
+%{__sed} '/^AC_PROG_CXX$/d' -i configure.ac
+
 %build
 cp -f /usr/share/automake/config.sub .
 %{__gettextize}
@@ -93,7 +96,7 @@ cp -f /usr/share/automake/config.sub .
 	--with-editor=/bin/vi \
 	--with-imagelib="gdk-pixbuf" \
 	--with-mailer=/bin/mail \
-	--with-browser=/usr/bin/mozilla \
+	--with-browser=%{_bindir}/mozilla \
 	--with-termlib=ncurses
 
 %{__make}
