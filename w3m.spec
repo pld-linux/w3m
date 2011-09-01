@@ -7,7 +7,7 @@ Summary(pt_BR.UTF-8):	O w3m é um paginador, mas pode ser usado também como um 
 Summary(tr.UTF-8):	Metin ekranda WWW tarayıcı
 Name:		w3m
 Version:	0.5.3
-Release:	2
+Release:	3
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
@@ -15,6 +15,8 @@ Source0:	http://downloads.sourceforge.net/w3m/%{name}-%{version}.tar.gz
 # Source0-md5:	1b845a983a50b8dec0169ac48479eacc
 Patch0:		%{name}-gzip_fallback.patch
 Patch1:		%{name}-nolibs.patch
+Patch2:		w3m-0.5.3-parallel-make.patch
+Patch3:		w3m-0.5.2-fix_gcc_error.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -81,6 +83,8 @@ na linuksowym framebufferze.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %{__sed} '/^AC_PROG_CXX$/d' -i configure.ac
 
