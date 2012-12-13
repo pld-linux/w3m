@@ -1,0 +1,22 @@
+--- w3m-0.5.3/acinclude.m4~	2011-01-04 10:22:18.000000000 +0100
++++ w3m-0.5.3/acinclude.m4	2012-12-13 14:38:14.767847657 +0100
+@@ -866,7 +866,7 @@
+ AC_TRY_COMPILE(
+ changequote(<<,>>)dnl
+ <<extern char *sys_errlist[];>>,
+-<<printf(sys_errlist[0]);>>,
++<<printf("%s", sys_errlist[0]);>>,
+ changequote([,])dnl
+ [have_sys_errlist="yes"; AC_DEFINE(HAVE_SYS_ERRLIST)],
+ [have_sys_errlist="no"])
+--- w3m-0.5.3/w3mbookmark.c~	2011-01-04 10:22:24.000000000 +0100
++++ w3m-0.5.3/w3mbookmark.c	2012-12-13 14:36:21.414518321 +0100
+@@ -99,7 +99,7 @@
+ 	fprintf(f, "<body>\n<h1>Bookmarks</h1>\n");
+ 	fprintf(f, "<h2>%s</h2>\n<ul>\n", section);
+ 	fprintf(f, "<li><a href=\"%s\">%s</a>\n", url, title);
+-	fprintf(f, end_section);
++	fprintf(f, "%s", end_section);
+ 	fprintf(f, "</ul>\n</body>\n</html>\n");
+ 	fclose(f);
+     }
