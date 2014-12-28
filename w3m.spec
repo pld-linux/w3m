@@ -23,7 +23,7 @@ URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gc-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	gpm-devel
 BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	imlib2-devel
