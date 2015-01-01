@@ -19,6 +19,7 @@ Patch2:		%{name}-0.5.3-parallel-make.patch
 Patch3:		%{name}-0.5.2-fix_gcc_error.patch
 Patch4:		%{name}-gc.patch
 Patch5:		format-security.patch
+Patch6:		ac-gettext.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -89,6 +90,7 @@ na linuksowym framebufferze.
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %{__sed} '/^AC_PROG_CXX$/d' -i configure.ac
 
@@ -98,6 +100,7 @@ cp -f /usr/share/automake/config.sub .
 %{__aclocal}
 %{__autoconf}
 %configure \
+	mkdir_p="mkdir -p" \
 	--enable-gopher \
 	--enable-image="x11,fb,fb+s" \
 	--enable-keymap=lynx \

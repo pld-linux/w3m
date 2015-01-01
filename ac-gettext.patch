@@ -1,0 +1,10 @@
+--- w3m-0.5.3/configure.ac~	2015-01-01 15:41:54.000000000 +0000
++++ w3m-0.5.3/configure.ac	2015-01-01 15:42:37.464498865 +0000
+@@ -38,6 +38,7 @@
+ W3M_TARGET=$target
+ AC_DEFINE_UNQUOTED(W3M_TARGET, $W3M_TARGET)
+ 
++AM_PROG_MKDIR_P
+ AC_W3M_M17N
+ if test x$enable_messagel10n = xno; then
+  AM_GNU_GETTEXT([external])
