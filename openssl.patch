@@ -1,0 +1,11 @@
+--- w3m-0.5.3/config.h.in~	2011-01-04 09:22:19.000000000 +0000
++++ w3m-0.5.3/config.h.in	2018-09-21 14:13:06.628573235 +0000
+@@ -84,7 +84,7 @@
+ #undef INET6
+ #undef HAVE_SOCKLEN_T
+ #undef HAVE_OLD_SS_FAMILY
+-#define USE_EGD
++#undef USE_EGD
+ #define ENABLE_REMOVE_TRAILINGSPACES
+ #undef MENU_THIN_FRAME
+ #undef USE_RAW_SCROLL

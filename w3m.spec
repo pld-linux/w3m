@@ -7,7 +7,7 @@ Summary(pt_BR.UTF-8):	O w3m é um paginador, mas pode ser usado também como um 
 Summary(tr.UTF-8):	Metin ekranda WWW tarayıcı
 Name:		w3m
 Version:	0.5.3
-Release:	7
+Release:	8
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
@@ -20,6 +20,7 @@ Patch3:		%{name}-0.5.2-fix_gcc_error.patch
 Patch4:		%{name}-gc.patch
 Patch5:		format-security.patch
 Patch6:		ac-gettext.patch
+Patch7:		openssl.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -91,6 +92,7 @@ na linuksowym framebufferze.
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %{__sed} '/^AC_PROG_CXX$/d' -i configure.ac
 
@@ -132,13 +134,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/*.html doc/{README,keymap,menu}.* NEWS
 %attr(755,root,root) %{_bindir}/w3m
 %attr(755,root,root) %{_bindir}/w3mman
-%dir %{_libdir}/w3m
-%attr(755,root,root) %{_libdir}/w3m/inflate
-%attr(755,root,root) %{_libdir}/w3m/xface2xpm
-%dir %{_libdir}/w3m/cgi-bin
-%attr(755,root,root) %{_libdir}/w3m/cgi-bin/*.cgi
-%attr(755,root,root) %{_libdir}/w3m/cgi-bin/w3mbookmark
-%attr(755,root,root) %{_libdir}/w3m/cgi-bin/w3mhelperpanel
+%dir %{_libexecdir}/w3m
+%attr(755,root,root) %{_libexecdir}/w3m/inflate
+%attr(755,root,root) %{_libexecdir}/w3m/xface2xpm
+%dir %{_libexecdir}/w3m/cgi-bin
+%attr(755,root,root) %{_libexecdir}/w3m/cgi-bin/*.cgi
+%attr(755,root,root) %{_libexecdir}/w3m/cgi-bin/w3mbookmark
+%attr(755,root,root) %{_libexecdir}/w3m/cgi-bin/w3mhelperpanel
 %dir %{_datadir}/w3m
 %{_datadir}/w3m/w3mhelp.html
 %{_datadir}/w3m/w3mhelp*en.*
@@ -150,4 +152,4 @@ rm -rf $RPM_BUILD_ROOT
 
 %files imgdisplay
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/w3m/w3mimgdisplay
+%attr(755,root,root) %{_libexecdir}/w3m/w3mimgdisplay
