@@ -1,3 +1,6 @@
+# Conditional build:
+%bcond_without	image 	# build without image support
+
 Summary:	Text based browser for the world wide web
 Summary(de.UTF-8):	Text-Browser für das WWW
 Summary(es.UTF-8):	w3m es un paginador, pero puede usarse también como un navegador WWW
@@ -27,8 +30,10 @@ BuildRequires:	automake
 BuildRequires:	gc-devel
 BuildRequires:	gettext-tools
 BuildRequires:	gpm-devel
+%if %{with image}
 BuildRequires:	gtk+2-devel >= 1:2.0
 BuildRequires:	imlib2-devel
+%endif
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	pkgconfig
@@ -104,10 +109,14 @@ cp -f /usr/share/automake/config.sub .
 %configure \
 	mkdir_p="mkdir -p" \
 	--enable-gopher \
+%if %{with image}
 	--enable-image="x11,fb,fb+s" \
+	--with-imagelib="gdk-pixbuf" \
+%else
+	--disable-image \
+%endif
 	--enable-keymap=lynx \
 	--with-editor=/bin/vi \
-	--with-imagelib="gdk-pixbuf" \
 	--with-mailer=/bin/mail \
 	--with-browser=%{_bindir}/mozilla \
 	--with-termlib=ncurses
@@ -150,6 +159,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/w3mman.1*
 %lang(ja) %{_mandir}/ja/man1/w3m.1*
 
+%if %{with image}
 %files imgdisplay
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/w3m/w3mimgdisplay
+%endif
