@@ -24,6 +24,7 @@ Patch4:		%{name}-gc.patch
 Patch5:		format-security.patch
 Patch6:		ac-gettext.patch
 Patch7:		openssl.patch
+Patch8:		%{name}-configure.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -98,6 +99,7 @@ na linuksowym framebufferze.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %{__sed} '/^AC_PROG_CXX$/d' -i configure.ac
 
