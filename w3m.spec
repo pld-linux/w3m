@@ -32,8 +32,7 @@ BuildRequires:	gc-devel
 BuildRequires:	gettext-tools
 BuildRequires:	gpm-devel
 %if %{with image}
-BuildRequires:	gtk+2-devel >= 1:2.0
-BuildRequires:	imlib2-devel
+BuildRequires:	imlib2-devel >= 1.0.5
 %endif
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -80,6 +79,7 @@ Summary:	Image display support for w3m
 Summary(pl.UTF-8):	Wyświetlanie obrazków dla w3m
 Group:		Applications/Networking
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	imlib2 >= 1.0.5
 
 %description imgdisplay
 Install this package if you want to display images in w3m run on xterm
@@ -113,7 +113,7 @@ cp -f /usr/share/automake/config.sub .
 	--enable-gopher \
 %if %{with image}
 	--enable-image="x11,fb,fb+s" \
-	--with-imagelib="gdk-pixbuf" \
+	--with-imagelib="imlib2" \
 %else
 	--disable-image \
 %endif
