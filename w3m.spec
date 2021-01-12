@@ -25,6 +25,7 @@ Patch5:		format-security.patch
 Patch6:		ac-gettext.patch
 Patch7:		openssl.patch
 Patch8:		%{name}-configure.patch
+Patch9:		%{name}-x11.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -33,6 +34,7 @@ BuildRequires:	gettext-tools
 BuildRequires:	gpm-devel
 %if %{with image}
 BuildRequires:	imlib2-devel >= 1.0.5
+BuildRequires:	xorg-lib-libX11-devel
 %endif
 BuildRequires:	ncurses-devel >= 5.0
 BuildRequires:	openssl-devel >= 0.9.7d
@@ -100,6 +102,7 @@ na linuksowym framebufferze.
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %{__sed} '/^AC_PROG_CXX$/d' -i configure.ac
 
