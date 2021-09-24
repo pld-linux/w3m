@@ -10,7 +10,7 @@ Summary(pt_BR.UTF-8):	O w3m é um paginador, mas pode ser usado também como um 
 Summary(tr.UTF-8):	Metin ekranda WWW tarayıcı
 Name:		w3m
 Version:	0.5.3
-Release:	9
+Release:	10
 Epoch:		1
 License:	MIT-like
 Group:		Applications/Networking
