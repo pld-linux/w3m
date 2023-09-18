@@ -1,0 +1,44 @@
+--- w3m-0.5.3/acinclude.m4.orig	2023-09-18 12:51:59.602042032 +0200
++++ w3m-0.5.3/acinclude.m4	2023-09-18 12:54:02.848394757 +0200
+@@ -649,9 +649,7 @@
+      fi;;
+    imlib2)
+      with_imlib2="yes"
+-     if test x"$IMLIB2_CONFIG" = x; then
+-       IMLIB2_CONFIG=imlib2-config
+-     fi;;
++     ;;
+    gdk-pixbuf)
+      with_gdkpixbuf="yes"
+      if test x"$GDKPIXBUF_CONFIG" = x; then
+@@ -693,7 +695,7 @@
+   fi
+   if test x"$with_imlib2" = xyes; then
+    AC_W3M_CHECK_VER([Imlib2],
+-	[`$IMLIB2_CONFIG --version 2>/dev/null`],
++	[`$PKG_CONFIG --modversion imlib2 2>/dev/null`],
+ 	1, 0, 5,
+ 	[have_imlib2="yes"],
+ 	[have_imlib2="no"])
+@@ -727,8 +729,8 @@
+      IMGOBJS="$IMGOBJS x11/x11_w3mimg.o"
+      IMGTARGETS="x11"    
+      AC_DEFINE(USE_IMLIB2)
+-     IMGX11CFLAGS="`${IMLIB2_CONFIG} --cflags`"
+-     IMGX11LDFLAGS="`${IMLIB2_CONFIG} --libs`"
++     IMGX11CFLAGS="`${PKG_CONFIG} --cflags imlib2`"
++     IMGX11LDFLAGS="`${PKG_CONFIG} --libs imlib2`"
+    else
+      AC_MSG_WARN([unable to build w3mimgdisplay with X11 support])
+    fi
+@@ -757,8 +759,8 @@
+      IMGTARGETS="${IMGTARGETS} fb"
+      AC_DEFINE(USE_IMLIB2)
+      IMGOBJS="$IMGOBJS fb/fb_w3mimg.o fb/fb.o fb/fb_img.o"
+-     IMGFBCFLAGS="`${IMLIB2_CONFIG} --cflags`"
+-     IMGFBLDFLAGS="`${IMLIB2_CONFIG} --libs`"
++     IMGFBCFLAGS="`${PKG_CONFIG} --cflags imlib2`"
++     IMGFBLDFLAGS="`${PKG_CONFIG} --libs imlib2`"
+    else
+      AC_MSG_WARN([unable to build w3mimgdisplay with FB support])
+    fi

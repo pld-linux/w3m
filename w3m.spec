@@ -26,6 +26,7 @@ Patch6:		ac-gettext.patch
 Patch7:		openssl.patch
 Patch8:		%{name}-configure.patch
 Patch9:		%{name}-x11.patch
+Patch10:	imlib2-pc.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -33,7 +34,7 @@ BuildRequires:	gc-devel
 BuildRequires:	gettext-tools
 BuildRequires:	gpm-devel
 %if %{with image}
-BuildRequires:	imlib2-devel >= 1.0.5
+BuildRequires:	imlib2-devel >= 1.1.0
 BuildRequires:	xorg-lib-libX11-devel
 %endif
 BuildRequires:	ncurses-devel >= 5.0
@@ -81,7 +82,7 @@ Summary:	Image display support for w3m
 Summary(pl.UTF-8):	Wyświetlanie obrazków dla w3m
 Group:		Applications/Networking
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	imlib2 >= 1.0.5
+Requires:	imlib2 >= 1.1.0
 
 %description imgdisplay
 Install this package if you want to display images in w3m run on xterm
@@ -103,6 +104,7 @@ na linuksowym framebufferze.
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 %{__sed} '/^AC_PROG_CXX$/d' -i configure.ac
 
@@ -125,8 +127,6 @@ cp -f /usr/share/automake/config.sub .
 	--with-mailer=/bin/mail \
 	--with-browser=%{_bindir}/mozilla \
 	--with-termlib=ncurses
-
-%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
