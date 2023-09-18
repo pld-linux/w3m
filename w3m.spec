@@ -27,6 +27,7 @@ Patch7:		openssl.patch
 Patch8:		%{name}-configure.patch
 Patch9:		%{name}-x11.patch
 Patch10:	imlib2-pc.patch
+Patch11:	parallel-build.patch
 URL:		http://w3m.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -105,6 +106,7 @@ na linuksowym framebufferze.
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %{__sed} '/^AC_PROG_CXX$/d' -i configure.ac
 

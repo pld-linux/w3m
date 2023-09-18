@@ -1,0 +1,11 @@
+--- w3m-0.5.3/Makefile.in.orig	2011-01-04 10:22:18.000000000 +0100
++++ w3m-0.5.3/Makefile.in	2023-09-18 13:35:32.715518024 +0200
+@@ -250,7 +250,7 @@
+ 	 (cd $$subdir && $(MAKE) install); \
+ 	done
+ 
+-all-scripts:
++all-scripts: funcname.tab
+ 	for dir in $(SCRIPTSUBDIRS);	\
+ 	do	\
+ 		(cd $$dir && $(MAKE) $(MAKE_ARGS)); \
